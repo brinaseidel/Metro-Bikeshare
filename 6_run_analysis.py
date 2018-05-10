@@ -4,6 +4,9 @@
 Created on Tue Feb  6 21:03:17 2018
 
 @author: brinaseidel
+
+This program analyzes the relationship between metro delays and bikeshare usage in Washington, DC>
+
 """
 
 import os
@@ -11,7 +14,6 @@ import pandas as pd
 import datetime 
 import numpy as np
 import matplotlib.pyplot as plt
-os.chdir("/Users/brinaseidel/Documents/School/GA Data Science/Final Project")
 
 # ****************************
 # Read in the prepared bikeshare data with features
@@ -187,51 +189,49 @@ feature_cols = ["min_dist", "n_docks", "precip", "snow", "snow_depth", "temp", "
 lin_reg_tts(bikes, feature_cols)
 
 # With delay
-feature_cols = ["delay", "min_dist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.append("delay")
 lin_reg_tts(bikes, feature_cols)
 
 # With delay x distance from metro
 bikes["delayxdist"] = bikes.delay * bikes.min_dist
-feature_cols = ["delay", "min_dist", "delayxdist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.append("delayxdist")
 lin_reg_tts(bikes, feature_cols)
 
 # With delay dummy
-feature_cols = ["major_delay", "min_dist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.remove("delay")
+feature_cols.remove("delayxdist")
+feature_cols.append("major_delay")
 lin_reg_tts(bikes, feature_cols)
 
 # Major delay interaction
 bikes["major_delayxdist"] = bikes.major_delay * bikes.min_dist
-feature_cols = ["major_delay", "min_dist", "major_delayxdist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.append("major_delayxdist")
 lin_reg_tts(bikes, feature_cols)
 
 # Lagged delay
-feature_cols = ["delay_lag", "min_dist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
-lin_reg_tts(bikes, feature_cols)
-
-# Lagged major delay
-feature_cols = ["major_delay_lag", "min_dist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.remove("major_delay")
+feature_cols.remove("major_delayxdist")
+feature_cols.append("delay_lag")
 lin_reg_tts(bikes, feature_cols)
 
 # Lagged delay interaction
 bikes["delay_lagxdist"] = bikes.delay_lag * bikes.min_dist
-feature_cols = ["delay_lag", "min_dist", "delay_lagxdist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.append("delay_lagxdist")
+lin_reg_tts(bikes, feature_cols)
+
+# Lagged major delay
+feature_cols.remove("delay_lag")
+feature_cols.remove("delay_lagxdist")
+feature_cols.append("major_delay_lag")
 lin_reg_tts(bikes, feature_cols)
 
 # Lagged major delay interaction
 bikes["major_delay_lagxdist"] = bikes.major_delay_lag * bikes.min_dist
-feature_cols = ["major_delay_lag", "min_dist", "major_delay_lagxdist", "n_docks", "precip", "snow", "snow_depth", "temp", "day_1", "day_2", "day_3", "day_4", "day_5", "day_6", 
-                "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10", "hour_11", "hour_12", "hour_13", "hour_14", "hour_15", "hour_16", "hour_17", "hour_18", "hour_19", "hour_20", "hour_21", "hour_22", "hour_23"]
+feature_cols.append("major_delay_lagxdist")
 lin_reg_tts(bikes, feature_cols)
 
 # ****************************
-# ARIMA
+# ARIMA (for one station only)
 # ****************************
 
 from statsmodels.tsa.arima_model import ARIMA
