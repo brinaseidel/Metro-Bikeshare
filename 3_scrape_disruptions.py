@@ -4,13 +4,8 @@
 Created on Sun Jan 28 16:09:38 2018
 
 @author: brinaseidel
-"""
-""" TO SCRAPE USING SELENIUM:
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import urllib.request
-browser = webdriver.Chrome(r'Programs/chromedriver')
-browser.get(r'https://www.opm.gov/data/Index.aspx?tag=FedScope')
+
+This program scrapes the WMATA website to collect information on metro delays.
 
 """
 
@@ -20,7 +15,6 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 pd.options.mode.chained_assignment = None
-os.chdir("/Users/brinaseidel/Documents/School/GA Data Science/Final Project")
 
 # ****************************
 # Collect links to scrape
@@ -114,7 +108,7 @@ for i, url in enumerate(links):
             
 # ****************************
 # Create data frame of disruptions and clean the disruption text to get what we're interested in
-# NOTE: Most of this code is from Mark Delcambre, accessed via Github
+# NOTE: Some of this code is from Mark Delcambre, accessed via Github
 # ****************************
                 
 # Make data frame
