@@ -4,11 +4,12 @@
 Created on Thu Jan 18 19:34:44 2018
 
 @author: brinaseidel
+
+This program reads in the list of metro stations and combines it with data on the line, latitude, and longitude from the WMATA API.
 """
 
 import os
 import pandas as pd
-os.chdir("/Users/brinaseidel/Documents/School/GA Data Science/Final Project")
 
 
 # ****************************
