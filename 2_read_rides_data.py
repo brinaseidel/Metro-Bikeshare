@@ -4,12 +4,14 @@
 Created on Sun Dec 24 20:38:32 2017
 
 @author: brinaseidel
+
+This program reads in and combines the bikeshare data for all years of interest,
+then transforms it so that we have a count of the # of rides from each station in each time period.
 """
 import os
 import pandas as pd
 import datetime 
 import numpy as np
-os.chdir("/Users/brinaseidel/Documents/School/GA Data Science/Final Project")
 
 # ****************************
 # Read in the bikeshare data for each quarter
