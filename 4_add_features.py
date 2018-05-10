@@ -4,12 +4,13 @@
 Created on Sat Feb  3 12:48:11 2018
 
 @author: brinaseidel
+
+This program combines the bikeshare data, the metro delay data, and additional features such as weather.  
 """
 import os
 import pandas as pd
 import datetime 
 import numpy as np
-os.chdir("/Users/brinaseidel/Documents/School/GA Data Science/Final Project")
 
 # ****************************
 # Read in the prepared bikeshare data
