@@ -1,5 +1,5 @@
 library("ggmap")
-stations <- read.csv("/Users/brinaseidel/Documents/School/GA Data Science/Final Project/Output Data/Bikeshare Stations.csv")
+stations <- read.csv("Output Data/Bikeshare Stations.csv")
 stations = transform(stations, min_dist = pmin(red_dist, blue_dist, green_dist, yellow_dist, orange_dist, silver_dist))
 stations$close = "More than 0.5mi from Metro"
 stations$close[stations$min_dist <= .5] = "Within 0.5mi from Metro"
